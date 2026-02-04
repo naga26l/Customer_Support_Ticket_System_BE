@@ -2,7 +2,7 @@
 
 A comprehensive Customer Support Ticket System featuring a robust ASP.NET Web API backend and cross-platform desktop frontend options (WinForms & WPF). This system allows users to create and track support tickets, while providing administrators with tools to manage, assign, and resolve them.
 
-## 🚀 Project Overview
+##  Project Overview
 
 The system is designed with a clear separation of concerns, utilizing an API-first approach. All communication between the desktop clients and the database happens through the Web API, ensuring better security and scalability.
 
@@ -13,7 +13,7 @@ The system is designed with a clear separation of concerns, utilizing an API-fir
 - **Cross-Frontend**: Choose between a modern WPF interface or a classic WinForms desktop application.
 - **Cloud Database**: Integrated with Aiven Cloud MySQL for reliable data persistence.
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 ### Backend
 - **Framework**: ASP.NET Core Web API (C#)
@@ -26,7 +26,7 @@ The system is designed with a clear separation of concerns, utilizing an API-fir
 - **Desktop (WinForms)**: Traditional Windows Forms for lightweight interaction.
 - **Communication**: `HttpClient` for asynchronous API consumption.
 
-## ⚙️ Steps to Run Locally
+## Steps to Run Locally
 
 ### Prerequisites
 - [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) or later.
@@ -69,7 +69,7 @@ You can run either the WPF or WinForms client.
    dotnet run
    ```
 
-## 🧠 Design Decisions & Assumptions
+## Design Decisions & Assumptions
 
 - **API-Direct Only**: One of the core requirements was ensuring the desktop applications have **zero** direct database access. All data flows exclusively through the Web API.
 - **ADO.NET over ORM**: To keep the project lightweight and demonstrate raw SQL proficiency, ADO.NET was chosen over Entity Framework.
@@ -77,5 +77,5 @@ You can run either the WPF or WinForms client.
 - **Automatic Schema Creation**: The `DbInitializer` in the API project was implemented to streamline the onboarding process, automatically creating necessary tables if they don't exist.
 - **Security Check**: Sensitive credentials have been removed from the source code. Users must provide their own database passwords in `appsettings.json`.
 
-## 📝 License
+##  License
 This project is open-source and available under the MIT License.

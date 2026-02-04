@@ -1,0 +1,58 @@
+<Window x:Class="TicketSystem.Desktop.Views.TicketDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:TicketSystem.Desktop.ViewModels"
+        Title="Ticket Details" Height="500" Width="600" WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- details -->
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="{Binding Ticket.Subject}" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+            
+            <WrapPanel Margin="0,0,0,10">
+                <TextBlock Text="Ticket #: " FontWeight="SemiBold"/>
+                <TextBlock Text="{Binding Ticket.TicketNumber}" Margin="0,0,20,0"/>
+
+                <TextBlock Text="Status: " FontWeight="SemiBold"/>
+                <TextBlock Text="{Binding Ticket.Status}" Margin="0,0,20,0"/>
+
+                <TextBlock Text="Priority: " FontWeight="SemiBold"/>
+                <TextBlock Text="{Binding Ticket.Priority}"/>
+            </WrapPanel>
+
+            <TextBlock Text="Description" FontWeight="SemiBold" Margin="0,0,0,5"/>
+            <TextBox Text="{Binding Ticket.Description}" IsReadOnly="True" Height="80" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Margin="0,0,0,15"/>
+
+            <TextBlock Text="Assigned To: " FontWeight="SemiBold"/>
+            <TextBlock Text="{Binding Ticket.AssignedToUsername, TargetNullValue='Unassigned'}" Margin="0,0,0,15"/>
+        </StackPanel>
+
+        <!-- Admin Actions -->
+        <Border Grid.Row="2" BorderBrush="Gray" BorderThickness="1" Padding="10" Visibility="{Binding AdminVisibility}">
+            <StackPanel>
+                <TextBlock Text="Admin Actions" FontWeight="Bold" Margin="0,0,0,10"/>
+                
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Assign To (User ID):" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBox Text="{Binding AssignToUserId}" Width="50" Margin="0,0,10,0"/>
+                    <Button Content="Assign" Command="{Binding AssignTicketCommand}" Padding="5,2"/>
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal">
+                     <TextBlock Text="Update Status:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                     <ComboBox SelectedValue="{Binding NewStatus}" SelectedValuePath="Content" Width="100" Margin="0,0,10,0">
+                        <ComboBoxItem Content="Open"/>
+                        <ComboBoxItem Content="In Progress"/>
+                        <ComboBoxItem Content="Closed"/>
+                     </ComboBox>
+                     <Button Content="Update" Command="{Binding UpdateStatusCommand}" Padding="5,2"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

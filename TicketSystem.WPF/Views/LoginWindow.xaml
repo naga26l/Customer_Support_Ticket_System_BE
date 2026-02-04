@@ -1,0 +1,22 @@
+<Window x:Class="TicketSystem.Desktop.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:TicketSystem.Desktop.ViewModels"
+        Title="Login" Height="300" Width="400" WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <vm:LoginViewModel/>
+    </Window.DataContext>
+    <Grid Margin="20">
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock Text="Username" Margin="0,0,0,5"/>
+            <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+            
+            <TextBlock Text="Password" Margin="0,0,0,5"/>
+            <PasswordBox x:Name="UserPasswordBox" Margin="0,0,0,10"/>
+            
+            <Button Content="Login" Command="{Binding LoginCommand}" 
+                    CommandParameter="{Binding ElementName=UserPasswordBox}"
+                    Height="30"/>
+        </StackPanel>
+    </Grid>
+</Window>

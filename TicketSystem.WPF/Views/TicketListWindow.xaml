@@ -1,0 +1,44 @@
+<Window x:Class="TicketSystem.Desktop.Views.TicketListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:TicketSystem.Desktop.ViewModels"
+        Title="Support Tickets" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="SpaceBetween" Grid.Row="0" Margin="0,0,0,10">
+            <TextBlock Text="{Binding WelcomeMessage}" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Create Ticket" Command="{Binding CreateTicketCommand}" Padding="10,5" Margin="0,0,10,0"/>
+                <Button Content="Refresh" Command="{Binding RefreshCommand}" Padding="10,5"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- List -->
+        <DataGrid Grid.Row="2" ItemsSource="{Binding Tickets}" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Ticket #" Binding="{Binding TicketNumber}" Width="150"/>
+                <DataGridTextColumn Header="Subject" Binding="{Binding Subject}" Width="*"/>
+                <DataGridTextColumn Header="Priority" Binding="{Binding Priority}" Width="100"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100"/>
+                <DataGridTextColumn Header="Created" Binding="{Binding CreatedAt, StringFormat=yyyy-MM-dd HH:mm}" Width="150"/>
+                <DataGridTextColumn Header="Created By" Binding="{Binding CreatedByUsername}" Width="120"/>
+                <DataGridTextColumn Header="Assigned To" Binding="{Binding AssignedToUsername}" Width="120"/>
+                
+                <DataGridTemplateColumn Header="Actions">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Details" Command="{Binding DataContext.ViewDetailsCommand, RelativeSource={RelativeSource AncestorType=Window}}" 
+                                    CommandParameter="{Binding}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
